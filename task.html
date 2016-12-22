@@ -1,0 +1,82 @@
+<html>
+<head>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+   <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript">
+
+
+$(document).ready(function(){
+  $('#btn-create').click(function (e) {
+  e.preventDefault();
+      var new_name = $('form').find('#new_name').val();
+      var new_email = $('form').find('#new_email').val();
+      var new_phoneno = $('form').find('#new_phoneno').val();
+
+       $('table').append('<tr id="row-input"><td>'+ new_name +'</td><td>'+ new_email +'</td><td>'+ new_phoneno +'</td> <td><button id="btn-edit">edit</button></td><td><button id="btn-delete">delete</button></td></tr>');
+
+    });
+    $('#btn-reset').click(function(){
+      document.getElementById("myForm").reset();
+    });
+
+    $(document).on("click", "#btn-delete" , function() {
+            $('#row-input').remove();
+          });
+  $(document).on("click", "#btn-edit" , function() {
+    $('table').find('#row-input').each(function (i) {
+      var $tds = $(this).find('td'),
+          new_name = $tds.eq(0).text(),
+          new_email = $tds.eq(1).text(),
+          new_phoneno = $tds.eq(2).text();
+     alert('Row ' + (i + 1) + ':\nname: ' + new_name
+            + '\nemail: ' + new_email
+            + '\nphoneno: ' + new_phoneno);
+          //  $('#new_name').append(new_name);
+            //  $('#new_email').append(new_email);
+            //    $('#new_phoneno').append(new_phoneno);
+  });
+    //var n_name=$('table').find('#new-name').val();
+  //  document.getElementById("name_val"+id).innerHTML="<input type='text' id='#new-name"+id+"' value='"+new_name+"'>";
+  //  $('form').appendTo('#new_name'+ n_name);
+  //  n_name.html("<input type='text' id='new_name' value='"+n_name.html()+"'/>");
+    //  var answer = prompt("Enter New Value", '');
+    //  $(this).html( answer);
+
+
+});
+
+});
+
+
+     </script>
+</head>
+<style>
+input[type=text] {
+    width: 20%;
+    padding: 6px 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    display: block;
+}
+</style>
+
+<body>
+  <form method="post" id="myForm" >
+    <label>First Name</label><input  type="text" id="new_name" name="new_name" required>
+    <label>E-mail</label><input  type="text" id="new_email" name="new_email" required>
+    <label>Phone No</label><input type="text" id="new_phoneno" name="new_phoneno" required>
+    <button id="btn-create">create</button>
+    <button id="btn-reset">reset</button>
+</form>
+<table>
+<tr>
+  <th>Name</th>
+  <th>E-mail</th>
+  <th>Contact</th>
+</tr>
+<tr>
+</tr>
+  </table>
+</body>
+</html>
